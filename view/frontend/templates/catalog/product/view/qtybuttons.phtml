@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © Elogic. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+
+<?php if ($block->shouldRenderQuantity()): ?>
+    <div class="field qty">
+        <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></label>
+
+        <script type="text/x-magento-init">
+            {
+            "*":
+                {
+                    "incrementDecrementQty": {}
+                }
+            }
+        </script>
+
+        <div class="control">
+            <button type="button" class="qty-decrement" id="qty-decrement">-</button>
+            <input type="number"
+                   name="qty"
+                   id="qty"
+                   value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+                   title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                   class="input-text qty"
+                   data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+            />
+            <button type="button"  class="qty-increment" id="qty-increment">+</button>
+        </div>
+    </div>
+<?php endif; ?>
